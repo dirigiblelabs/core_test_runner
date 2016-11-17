@@ -31,8 +31,21 @@
 
 	<script>
 		angular.module('test', ['ngResource'])
-		.service('TestRunnerSvc', ['$resource', function($resource) {
-			return $resource('/services/test/test/qunit/tests.js', {});
+		.service('TestRunnerSvc', ['$resource', '$window', function($resource, $window) {
+			var testsUrl;
+			var testsUrlParams = $window.location.search.replace('?','').split("&")
+							.filter(function(entry){
+								var kv = entry.split('=');
+								if(kv[0].trim().toLowerCase() === 'url'){
+									return true;
+								}
+								return false;
+							});
+			if(testsUrlParams && testsUrlParams.length>0){
+				testsUrl = decodeURIComponent(testsUrlParams[0]).split('=')[1].trim();
+			}
+			console.error(testsUrl);
+			return $resource(testsUrl, {});
 		}])
 		.controller('testController', ['$scope', '$window', 'TestRunnerSvc', function($scope, $window, TestRunnerSvc) {
 			TestRunnerSvc.get().$promise
