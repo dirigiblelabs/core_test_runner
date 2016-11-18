@@ -15,11 +15,13 @@
 		All modules"></label><div id="qunit-modulefilter-dropdown" style="display: none;"><span id="qunit-modulefilter-actions"><button style="display:none">Apply</button><button type="reset" style="display:none">Reset</button><label class="clickable checked"><input type="checkbox" checked="checked">All modules</label></span><ul id="qunit-modulefilter-dropdown-list"></ul></div></form><form class="qunit-filter"><label>Filter: <input type="text" name="filter" id="qunit-filter-input"></label> <button>Go</button></form><div class="clearfix"></div></div>-->
 		<h2 id="qunit-userAgent">QUnit 2.0.1; {{userAgent}}</h2>		
 		<p id="qunit-testresult" class="result">Tests completed in <span ng-bind="data.testSuite.runtime"></span> milliseconds.<br><span class='passed' ng-bind="data.testSuite.passed"></span> assertions of <span class='total' ng-bind="data.testSuite.total"></span> passed, <span class='failed' ng-bind="data.testSuite.failed"></span> failed.</p>		
-		<ol id="qunit-tests" ng-repeat="test in data.tests">
-			<li ng-class="data.testSuite.failed?'fail':'pass'" ng-click="collapsed=!collapsed">
-				<strong><span class="test-name" ng-bind="test.name"></span> <b class="counts">({{test.total}})</b></strong><span class="runtime">{{test.runtime}} ms</span>
+		<ol id="qunit-tests">
+			<li ng-class="test.failed?'fail':'pass'" ng-click="collapsed=!collapsed" ng-repeat="test in data.tests">
+				<strong><span class="module-name" ng-if="test.module" ng-bind="test.module">: </span><span class="test-name" ng-bind="test.name"></span> <b class="counts">({{test.total}})</b></strong><span class="runtime">{{test.runtime}} ms</span>
 				<ol class="qunit-assert-list" ng-class="{'qunit-collapsed':!collapsed}" ng-repeat="assertion in test.assertions">
-					<li ng-class="assertion.result?'pass':'fail'"><span class="test-message" ng-bind="assertion.message"></span><span class="runtime">@ {{test.runtime}} ms</span></li>
+					<li ng-class="assertion.result?'pass':'fail'"><span class="test-message" ng-bind="assertion.message"></span><span ng-show="assertion.runtime" class="runtime">@ {{assertion.runtime}} ms</span>
+						<div ng-show="assertion.stack" ng-bind="assertion.stack"></div>
+					</li>
 				</ol>
 			</li>
 		</ol>
