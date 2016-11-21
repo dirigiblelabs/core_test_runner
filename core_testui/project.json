@@ -1,1 +1,8 @@
-{"guid":"core_testui","repository":{"type":"git","branch":"master","url":"https://github.com/dirigiblelabs/core_testui.git"}}
+{
+    "guid":"core_testui",
+    "repository":{
+        "type":"git",
+        "branch":"master",
+        "url":"https://github.com/dirigiblelabs/core_testui.git"
+    }
+}
