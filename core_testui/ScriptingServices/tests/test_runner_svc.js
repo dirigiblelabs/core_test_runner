@@ -3,7 +3,7 @@
 
 var response = require("net/http/response");
 var request = require("net/http/request");
-var URI = require("uri/URI");
+var URI = require("lib/URI");
 
 var findInAcceptHeader = function(httpReqHeaderAccept, mime){
 	return httpReqHeaderAccept.filter(function(entry){

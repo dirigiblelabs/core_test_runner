@@ -1,5 +1,5 @@
 {
-    "guid":"core_testui",
+    "guid":"core_test_runner",
     "repository":{
         "type":"git",
         "branch":"master",
