@@ -11,6 +11,7 @@ Sample use:
 			"serviceReporter": svc_reporter 
 		});	</pre>
 
-svc_reporter is an object with the function forMedia(mediaType).
-The service will resolve the requested media type and provide it in a simplified form as argument to this function ("json" or "xml").
+<code>svc_reporter</code> is an object that has function <code>forMedia(mediaType)</code>.
+
+The <code>test_runner_svc</code> sevice will resolve the request media type and provide it in a simplified form as argument to this function ("json" or "xml").
 The reporter can then attach to the test framework for which it was designed and provision its report in the request format. 
